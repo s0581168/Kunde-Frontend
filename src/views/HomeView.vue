@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Hello World!"/>
+    <img alt="Vue logo" src="../assets/patientlogo.png">
+    <HelloWorld msg="Welcome to Patienten-Verwaltung-App"/>
   </div>
 </template>
 
