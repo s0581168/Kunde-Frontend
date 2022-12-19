@@ -2,6 +2,8 @@
   <h1>Welcome to Patienten-Liste</h1>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col" v-for="kunde in kunden" :key="kunde.id">
+      <div class="card">
+        <img src="patientlogo.png" class="card-img-top" alt="kunde.firstname + ' ' + kunde.lastname">
         <div class="card-body">
           <h5 class="card-title">{{ kunde.firstName }} {{kunde.lastName}}</h5>
           <p class="card-text">
@@ -10,7 +12,7 @@
         </div>
       </div>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -19,10 +21,8 @@ export default {
   data () {
     return {
       kunden: []
-
     }
   },
-
   mounted () {
     const requestOptions = {
       method: 'GET',
