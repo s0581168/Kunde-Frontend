@@ -1,13 +1,13 @@
 <template>
   <h1>Welcome to Patienten-Liste</h1>
   <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col" v-for="kunde in kunden" :key="kunde.id">
+    <div class="col" v-for="k in kunde" :key="k.id">
       <div class="card">
-        <img src="patientlogo.png" class="card-img-top" alt="kunde.firstname + ' ' + kunde.lastname">
+        <img src="patientlogo.png" class="card-img-top" alt="k.firstName + ' ' + k.lastName">
         <div class="card-body">
-          <h5 class="card-title">{{ kunde.firstName }} {{kunde.lastName}}</h5>
+          <h5 class="card-title">{{ k.firstName }} {{k.lastName}}</h5>
           <p class="card-text">
-            {{ kunde.firstName }} {{kunde.lastName}}
+            {{ k.firstName }} {{k.lastName}}
             </p>
         </div>
       </div>
@@ -20,7 +20,7 @@ export default {
   name: 'ListeView.vue',
   data () {
     return {
-      kunden: []
+      kunde: []
     }
   },
   mounted () {
@@ -31,8 +31,8 @@ export default {
 
     fetch('http://localhost:8080/api/v1/kunde_verwaltung', requestOptions)
       .then(response => response.json())
-      .then(result => result.forEach(kunde => {
-        this.kunden.push(kunde)
+      .then(result => result.forEach(k => {
+        this.kunde.push(k)
       }))
       .catch(error => console.log('error', error))
   }
