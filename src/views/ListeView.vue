@@ -1,26 +1,39 @@
 <template>
   <h1>Welcome to Patienten-Liste</h1>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col" v-for="k in kunde" :key="k.id">
-      <div class="card">
-        <img src="patientlogo.png" class="card-img-top" alt="k.firstName + ' ' + k.lastName">
-        <div class="card-body">
-          <h5 class="card-title">{{ k.firstName }} {{k.lastName}}</h5>
-          <p class="card-text">
-            {{ k.firstName }} {{k.lastName}}
-            </p>
-        </div>
-      </div>
-    </div>
+  <div class="container-fluid">
+    <Kunde-List :Kunde="this.kunde"></Kunde-List>
   </div>
+  <kunde-create @created="addKunde"></kunde-create>
 </template>
 
 <script>
+import KundeCreate from '@/components/KundeCreate'
+import KundeListe from '@/components/KundeListe'
+
 export default {
   name: 'ListeView.vue',
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    KundeListe,
+    KundeCreate
+  },
   data () {
     return {
       kunde: []
+    }
+  },
+  methods: {
+    addKunde (k) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + k
+      const requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      }
+
+      fetch(endpoint, requestOptions)
+        .then(response => response.json())
+        .then(k => this.kunde.push(k))
+        .catch(error => console.log('error', error))
     }
   },
   mounted () {
