@@ -1,28 +1,53 @@
 <template>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col" v-for="k in kunde" :key="k.id">
-    </div>
+  <div class = "container">
+
+    <h1 class = "text-center"> Kunde Liste</h1>
+
+    <table class = "table table-striped">
+      <thead>
+      <tr>
+        <th> Kunde Id</th>
+        <th> First Name</th>
+        <th> LastName</th>
+        <th> Geburtsdatum</th>
+        <th> Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="k in kunde" v-bind:key="k.id">
+        <td> {{k.id }}</td>
+        <td> {{k.firstName }}</td>
+        <td> {{k.lastName}}</td>
+        <td> {{k.email}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import Kunde from '@/components/Kunde'
 
 export default {
   name: 'KundeListe',
-  components: {
-    // eslint-disable-next-line vue/no-unused-components
-    Kunde
+  data () {
+    return {
+      kunde: []
+    }
   },
-  props: {
-    kunde: {
-      type: Array,
-      required: true
+  methode: {
+    getKunde (k) {
+      const requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+      }
+
+      fetch('http://localhost:8080/api/v1/kunde_verwaltung' + '/' + k.id, requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error))
     }
   }
+
 }
+
 </script>
-
-<style scoped>
-
-</style>

@@ -1,14 +1,14 @@
 <template>
   <button class="btn btn-success sticky-button" data-bs-toggle="offcanvas" data-bs-target="#kunde-create-offcanvas" aria-controls="#kunde-create-offcanvas">
-    <i class="bi bi-kunde-plus-fill"></i>
+    <i class="bi bi-kunde-plus-fill"></i>neu Kunde anlegen
   </button>
   <div class="offcanvas offcanvas-end" tabindex="-1" id="kunde-create-offcanvas" aria-labelledby="offcanvas-label">
     <div class="offcanvas-header">
-      <h5 id="offcanvas-label">New Kunde</h5>
+      <h5 id="offcanvas-label">Neu Kunde</h5>
       <button type="button" id="close-offcanvas" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <form class="text-start needs-validation" id="kunde-create-form" novalidate>
+      <form class="text-start needs-validation" id="kunde-create" novalidate>
         <div class="mb-3">
           <label for="first-name" class="form-label">First name</label>
           <input type="text" class="form-control" id="first-name" v-model="firstName" required>
@@ -25,16 +25,16 @@
         </div>
         <div class="mb-3">
           <label for="geburtsdatum" class="form-label">Geburtsdatum</label>
-          <input type="text" class="form-control" id="geburtsdatum" v-model="geburtsDatum" required>
+          <input type="date" class="form-control" id="geburtsdatum" v-model="geburtsDatum" required>
           <div class="invalid-feedback">
-            Please provide the last name.
+            Please provide the geburtsdatum.
           </div>
         </div>
         <div class="mb-3">
           <label for="e-mail" class="form-label">Email</label>
-          <input type="text" class="form-control" id="e-mail" v-model="eMail" required>
+          <input type="email" class="form-control" id="e-mail" v-model="eMail" required>
           <div class="invalid-feedback">
-            Please provide the last name.
+            Please provide the email.
           </div>
         </div>
         <div v-if="this.serverValidationMessages">
@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  name: 'KundeCreate.vue',
+  name: 'KundeCreate',
   data () {
     return {
       firstName: '',
@@ -67,8 +67,9 @@ export default {
   },
   emits: ['created'],
   methods: {
-    async createKunde () {
-      if (this.validate()) {
+    createKunde () {
+      const valid = this.validate()
+      if (valid) {
         const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/kunde_verwaltung'
 
         const headers = new Headers()
@@ -80,7 +81,6 @@ export default {
           geburtsDatum: this.geburtsDatum,
           eMail: this.eMail
         })
-
         const requestOptions = {
           method: 'POST',
           headers: headers,
@@ -88,27 +88,28 @@ export default {
           redirect: 'follow'
         }
 
-        const response = await fetch(endpoint, requestOptions)
-        await this.handleResponse(response)
-      }
-    },
-    async handleResponse (response) {
-      if (response.ok) {
-        this.$emit('created', response.headers.get('location'))
-        document.getElementById('close-offcanvas').click()
-      } else if (response.status === 400) {
-        response = await response.json()
-        response.errors.forEach(error => {
-          this.serverValidationMessages.push(error.defaultMessage)
-        })
-      } else {
-        this.serverValidationMessages.push('Unknown error occurred')
+        fetch(endpoint, requestOptions)
+          .catch(error => console.log('error', error))
       }
     },
     validate () {
-      const form = document.getElementById('kunde-create')
-      form.classList.add('was-validated')
-      return form.checkValidity()
+      let valid = true
+      const forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              valid = false
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+      return valid
     }
   }
 }

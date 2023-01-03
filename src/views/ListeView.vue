@@ -1,9 +1,8 @@
 <template>
-  <h1>Welcome to Patienten-Liste</h1>
   <div class="container-fluid">
-    <Kunde-List :Kunde="this.kunde"></Kunde-List>
+    <KundeListe kunde="this.kunde"></KundeListe>
   </div>
-  <kunde-create @created="addKunde"></kunde-create>
+  <KundeCreate @created="addKunde"></KundeCreate>
 </template>
 
 <script>
@@ -11,9 +10,9 @@ import KundeCreate from '@/components/KundeCreate'
 import KundeListe from '@/components/KundeListe'
 
 export default {
-  name: 'ListeView.vue',
+  name: 'ListeView',
   components: {
-    // eslint-disable-next-line vue/no-unused-components
+
     KundeListe,
     KundeCreate
   },
@@ -23,8 +22,8 @@ export default {
     }
   },
   methods: {
-    addKunde (k) {
-      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + k
+    addKunde (kundeLocation) {
+      const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + kundeLocation
       const requestOptions = {
         method: 'GET',
         redirect: 'follow'

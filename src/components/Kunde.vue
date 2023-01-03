@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img src="patientlogo.png" class="card-img-top" alt="k.firstName + ' ' + k.lastName">
+    <img src="patientlogo.5935dc54.png" class="card-img-top" alt="k.firstName + ' ' + k.lastName">
     <div class="card-body">
       <h5 class="card-title">{{ k.firstName }} {{k.lastName}}</h5>
       <p class="card-text">
