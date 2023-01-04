@@ -21,8 +21,9 @@
         <td> {{k.geburtsDatum}}</td>
         <td> {{k.email}}</td>
         <td>
-          <button type="button" class="btn btn-primary">Update</button>
-          <button class="btn btn-secondary me-3" type="submit" @click ="deletekunde(k.id)">Delete</button>
+          <div class="mt-5">
+          <button class="btn btn-secondary me-3" type="submit" @click.prevent ="deletekunde(k.id)">Delete</button>
+          </div>
         </td>
       </tr>
       </tbody>
@@ -38,10 +39,10 @@ export default {
       kunde: []
     }
   },
-  methode: {
+  methods: {
     deletekunde (kundeid) {
       const endpoint1 = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/kunde_verwaltung' + '/' + kundeid
-      var requestOptions = {
+      const requestOptions = {
         method: 'DELETE',
         redirect: 'follow'
       }

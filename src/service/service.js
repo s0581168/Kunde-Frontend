@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const EMPLOYEE_API_BASE_URL = 'http://localhost:8080/api/v1/kunde_verwaltung'
+const endpoint = 'http://localhost:8080/api/v1/kunde_verwaltung'
 
-class EmployeeService {
+class Service {
   getEmployees () {
-    return axios.get(EMPLOYEE_API_BASE_URL)
+    return axios.get(endpoint)
   }
 }
 
-export default new EmployeeService()
+export default new Service()
