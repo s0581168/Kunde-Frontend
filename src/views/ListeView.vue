@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <KundeListe kunde="this.kunde"></KundeListe>
+    <KundeListe>:kunde="this.kunde"</KundeListe>
   </div>
   <KundeCreate @created="addKunde"></KundeCreate>
 </template>
@@ -12,7 +12,6 @@ import KundeListe from '@/components/KundeListe'
 export default {
   name: 'ListeView',
   components: {
-
     KundeListe,
     KundeCreate
   },
@@ -41,7 +40,6 @@ export default {
       method: 'GET',
       redirect: 'follow'
     }
-
     fetch(endpoint, requestOptions)
       .then(response => response.json())
       .then(result => result.forEach(k => {

@@ -67,7 +67,7 @@ export default {
   },
   emits: ['created'],
   methods: {
-    createKunde () {
+    async createKunde () {
       const valid = this.validate()
       if (valid) {
         const endpoint = process.env.VUE_APP_BACKEND_BASE_URL + '/api/v1/kunde_verwaltung'
