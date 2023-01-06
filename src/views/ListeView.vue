@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
-    <KundeListe>:kunde="this.kunde"</KundeListe>
+    <KundeCreate @created="addKunde"></KundeCreate>
   </div>
-  <KundeCreate @created="addKunde"></KundeCreate>
+  <KundeListe>:kunde="this.kunde"</KundeListe>
 </template>
 
 <script>

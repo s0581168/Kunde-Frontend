@@ -31,10 +31,10 @@
           </div>
         </div>
         <div class="mb-3">
-          <label for="e-mail" class="form-label">Email</label>
-          <input type="email" class="form-control" id="e-mail" v-model="eMail" required>
+          <label for="telefonnumer" class="form-label">Telefonnummer</label>
+          <input type="number" class="form-control" id="e-mail" v-model="telefonnummer" required>
           <div class="invalid-feedback">
-            Please provide the email.
+            Please provide the nummer.
           </div>
         </div>
         <div v-if="this.serverValidationMessages">
@@ -61,7 +61,7 @@ export default {
       firstName: '',
       lastName: '',
       geburtsDatum: '',
-      eMail: '',
+      telefonnummer: '',
       serverValidationMessages: []
     }
   },
@@ -79,7 +79,7 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           geburtsDatum: this.geburtsDatum,
-          eMail: this.eMail
+          telefonnumer: this.telefonnummer
         })
         const requestOptions = {
           method: 'POST',
