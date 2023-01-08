@@ -26,8 +26,8 @@
         <td> {{k.telefonnummer}}</td>
         <td> {{k.termine.length}}</td>
         <td>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#kunde-update-offcanvas" aria-controls="#kunde-update-offcanvas">Edit</button>
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="kunde-update-offcanvas" aria-labelledby="offcanvas-label">
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" :data-bs-target="`#kunde-update-offcanvas-${k.id}`" aria-controls="#kunde-update-offcanvas-{{k.id}}">Edit</button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" :id="`kunde-update-offcanvas-${k.id}`" aria-labelledby="offcanvas-label">
               <div class="offcanvas-header">
                 <h5 id="offcanvas-label">Update Kunde</h5>
                 <button type="button" id="close-offcanvas" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -81,8 +81,8 @@
             <button class="btn btn-secondary me-3" type="submit" @click.prevent ="deletekunde(k.id)">Delete</button>
         </td>
         <td>
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#termin-create-offcanvas" aria-controls="#termin-create-offcanvas">create Termin</button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="termin-create-offcanvas" aria-labelledby="offcanvas-label">
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" :data-bs-target="`#termin-create-offcanvas-${k.id}`" aria-controls="#termin-create-offcanvas-{{k.id}}">create Termin</button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" :id="`termin-create-offcanvas-${k.id}`" aria-labelledby="offcanvas-label">
             <div class="offcanvas-header">
               <h5 id="offcanvas-label">New Termin</h5>
               <button type="button" id="close-offcanvas" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>

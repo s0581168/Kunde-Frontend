@@ -11,7 +11,7 @@
         <th scope="col"> Last Name</th>
         <th scope="col"> Geburtsdatum</th>
         <th scope="col"> Telefonnummer</th>
-        <th scope="col"> Termin</th>
+        <th scope="col"> TerminDatum</th>
       </tr>
       </thead>
       <tbody>
