@@ -7,12 +7,12 @@
       <thead>
       <tr>
         <th scope="col"> Kunde Id</th>
-        <th scope="col"> First Name</th>
-        <th scope="col"> Last Name</th>
+        <th scope="col"> Vorname</th>
+        <th scope="col"> Nachname</th>
         <th scope="col"> Geburtsdatum</th>
         <th scope="col"> Telefonnummer</th>
         <th scope="col"> TerminDatum</th>
-        <th scope="col"> Delete</th>
+        <th scope="col"> Löschen</th>
       </tr>
       </thead>
       <tbody>
@@ -23,7 +23,7 @@
         <td> {{t.kunde.geburtsDatum}}</td>
         <td> {{t.kunde.telefonnummer}}</td>
         <td> {{t.termindate}}</td>
-        <td><button class="btn btn-secondary me-3" type="submit" @click.prevent="deleteTermin(t.id)">Delete</button></td>
+        <td><button class="btn btn-secondary me-3" type="submit" @click.prevent="deleteTermin(t.id)">Löschen</button></td>
       </tr>
       </tbody>
     </table>

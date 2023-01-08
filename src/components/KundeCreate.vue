@@ -10,14 +10,14 @@
     <div class="offcanvas-body">
       <form class="text-start needs-validation" id="kunde-create" novalidate>
         <div class="mb-3">
-          <label for="first-name" class="form-label">First name</label>
+          <label for="first-name" class="form-label">Vorname</label>
           <input type="text" class="form-control" id="first-name" v-model="firstName" required>
           <div class="invalid-feedback">
             Please provide the first name.
           </div>
         </div>
         <div class="mb-3">
-          <label for="last-name" class="form-label">Last name</label>
+          <label for="last-name" class="form-label">Nachname</label>
           <input type="text" class="form-control" id="last-name" v-model="lastName" required>
           <div class="invalid-feedback">
             Please provide the last name.
@@ -45,8 +45,8 @@
           </ul>
         </div>
         <div class="mt-5">
-          <button class="btn btn-primary me-3" type="submit" @click.prevent="createKunde">Create</button>
-          <button class="btn btn-danger" type="reset">Reset</button>
+          <button class="btn btn-primary me-3" type="submit" @click.prevent="createKunde">anlegen</button>
+          <button class="btn btn-danger" type="reset">neu machen</button>
         </div>
       </form>
     </div>

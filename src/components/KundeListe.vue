@@ -7,14 +7,14 @@
       <thead>
       <tr>
         <th scope="col"> Kunde Id</th>
-        <th scope="col"> First Name</th>
-        <th scope="col"> Last Name</th>
+        <th scope="col"> Vorname</th>
+        <th scope="col"> Nachname</th>
         <th scope="col"> Geburtsdatum</th>
         <th scope="col"> Telefonnummer</th>
         <th scope="col"> Termin</th>
-        <th scope="col"> Edit</th>
-        <th scope="col"> Delete</th>
-        <th scope="col"> create Termin</th>
+        <th scope="col"> Bearbeiten</th>
+        <th scope="col"> Löschen</th>
+        <th scope="col"> Termin anlegen</th>
       </tr>
       </thead>
       <tbody>
@@ -26,23 +26,23 @@
         <td> {{k.telefonnummer}}</td>
         <td> {{k.termine.length}}</td>
         <td>
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" :data-bs-target="`#kunde-update-offcanvas-${k.id}`" aria-controls="#kunde-update-offcanvas-{{k.id}}">Edit</button>
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" :data-bs-target="`#kunde-update-offcanvas-${k.id}`" aria-controls="#kunde-update-offcanvas-{{k.id}}">Bearbeiten</button>
           <div class="offcanvas offcanvas-end" tabindex="-1" :id="`kunde-update-offcanvas-${k.id}`" aria-labelledby="offcanvas-label">
               <div class="offcanvas-header">
-                <h5 id="offcanvas-label">Update Kunde</h5>
+                <h5 id="offcanvas-label">Aktuell Kunde</h5>
                 <button type="button" id="close-offcanvas" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
               <div class="offcanvas-body">
                 <form class="text-start needs-validation" id="kunde-update" novalidate>
                   <div class="mb-3">
-                    <label for="first-name" class="form-label">First name</label>
+                    <label for="first-name" class="form-label">Vorname</label>
                     <input type="text" class="form-control" id="first-name" v-model="firstName" required>
                     <div class="invalid-feedback">
                       Please provide the first name.
                     </div>
                   </div>
                   <div class="mb-3">
-                    <label for="last-name" class="form-label">Last name</label>
+                    <label for="last-name" class="form-label">Nachname</label>
                     <input type="text" class="form-control" id="last-name" v-model="lastName" required>
                     <div class="invalid-feedback">
                       Please provide the last name.
@@ -70,21 +70,21 @@
                     </ul>
                   </div>
                   <div class="mt-5">
-                    <button class="btn btn-primary me-3" type="submit" @click.prevent="updateKunde(k.id)">Update</button>
-                    <button class="btn btn-danger" type="reset">Reset</button>
+                    <button class="btn btn-primary me-3" type="submit" @click.prevent="updateKunde(k.id)">bearbeiten</button>
+                    <button class="btn btn-danger" type="reset">zurück</button>
                   </div>
                 </form>
               </div>
             </div>
         </td>
         <td>
-            <button class="btn btn-secondary me-3" type="submit" @click.prevent ="deletekunde(k.id)">Delete</button>
+            <button class="btn btn-secondary me-3" type="submit" @click.prevent ="deletekunde(k.id)">Löschen</button>
         </td>
         <td>
-          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" :data-bs-target="`#termin-create-offcanvas-${k.id}`" aria-controls="#termin-create-offcanvas-{{k.id}}">create Termin</button>
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" :data-bs-target="`#termin-create-offcanvas-${k.id}`" aria-controls="#termin-create-offcanvas-{{k.id}}">Termin anlegen</button>
           <div class="offcanvas offcanvas-end" tabindex="-1" :id="`termin-create-offcanvas-${k.id}`" aria-labelledby="offcanvas-label">
             <div class="offcanvas-header">
-              <h5 id="offcanvas-label">New Termin</h5>
+              <h5 id="offcanvas-label">Neu Termin</h5>
               <button type="button" id="close-offcanvas" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -97,8 +97,8 @@
                   </div>
                 </div>
                 <div class="mt-5">
-                  <button class="btn btn-primary me-3" type="submit" @click.prevent="createTermin(k.id)">Create</button>
-                  <button class="btn btn-danger" type="reset">Reset</button>
+                  <button class="btn btn-primary me-3" type="submit" @click.prevent="createTermin(k.id)">anlegen</button>
+                  <button class="btn btn-danger" type="reset">zurück</button>
                 </div>
               </form>
             </div>
